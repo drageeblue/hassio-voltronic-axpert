@@ -8,7 +8,7 @@
     "boot": "auto",
     "privileged": ["SYS_RAWIO"],
     "uart": true,
-    "usb": true,    
+    "usb": true,
     "init": false,
     "options": {
         "device": null,
