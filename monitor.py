@@ -171,8 +171,8 @@ def get_settings(device):
     response = serial_command(device, "QPIRI")
     try:
         terms = response.split(" ")
-        if len(terms) < 26:
-            raise RuntimeError("Received fewer than 26 terms")
+        if len(terms) < 25:
+            raise RuntimeError("Received fewer than 25 terms")
 
         return {
             "AcInputVoltage": float(terms[0]),
