@@ -154,7 +154,9 @@ def get_data(device):
 
         return {
             "BusVoltage": float(terms[7]),
+            "BatteryVoltage": float(terms[8]),            
             "BatteryChargingCurrent": int(terms[9]),
+            "BatteryCapacity": int(terms[10]),
             "InverterHeatsinkTemperature": float(terms[11]),
             "PvInputCurrent": float(terms[12]),
             "PvInputVoltage": float(terms[13]),
