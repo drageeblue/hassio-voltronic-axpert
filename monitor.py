@@ -86,7 +86,7 @@ def serial_command(device, command, *, retries=1):
                 response += os.read(file, 256)
             except Exception:
                 time.sleep(0.02)
-            if len(response) > 0 and response[0] != ord("(") or b"NAKss" in response:
+            if len(response) > 0 and response[0] != ord("("):
                 raise RuntimeError(f"Corrupt response {response}")
 
         return response.split(b"\r")[0][1:-2].decode()
@@ -171,7 +171,7 @@ def get_settings(device):
     response = serial_command(device, "QPIRI")
     try:
         terms = response.split(" ")
-        if len(terms) < 25:
+        if len(terms) < 26:
             raise RuntimeError("Received fewer than 26 terms")
 
         return {
@@ -241,7 +241,10 @@ def main(
     while True:
         start = time.time()
 
-
+        data = json.dumps(get_parallel_data(device))
+        print("parallel_data", data, "\n")
+        send_data(client, mqtt_topic_parallel, data)
+        time.sleep(sleep_query)
 
         data = json.dumps(get_data(device))
         print("data", data, "\n")
