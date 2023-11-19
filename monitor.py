@@ -111,36 +111,36 @@ def get_parallel_data(device):
     response = serial_command(device, "QPGS0")
     try:
         terms = response.split(" ")
-        if len(terms) <= 0:
-            raise RuntimeError("Received fewer than 27 terms")
+        if len(terms) >= 27:
+#            raise RuntimeError("Received fewer than 27 terms")
 
-        return {
-            "SerialNumber": int(terms[1]),
-            "Mode": "grid" if terms[2] == "L" else "solar" if terms[2] == "B" else None,
-            "GridVoltage": float(terms[4]),
-            "GridFrequency": float(terms[5]),
-            "OutputVoltage": float(terms[6]),
-            "OutputFrequency": float(terms[7]),
-            "OutputAparentPower": int(terms[8]),
-            "OutputActivePower": int(terms[9]),
-            "LoadPercentage": int(terms[10]),
-            "BatteryVoltage": float(terms[11]),
-            "BatteryChargingCurrent": int(terms[12]),
-            "BatteryCapacity": float(terms[13]),
-            "PvInputVoltage": float(terms[14]),
-            "TotalChargingCurrent": int(terms[15]),
-            "TotalAcOutputApparentPower": int(terms[16]),
-            "TotalAcOutputActivePower": int(terms[17]),
-            "TotalAcOutputPercentage": int(terms[18]),
-            "InverterStatus": terms[19],
-            "OutputMode": int(terms[20]),
-            "ChargerSourcePriority": int(terms[21]),
-            "MaxChargeCurrent": int(terms[22]),
-            "MaxChargerRange": int(terms[23]),
-            "MaxAcChargerCurrent": int(terms[24]),
-            "PvInputCurrentForBattery": int(terms[25]),
-            "BatteryDischargeCurrent": int(terms[26]),
-        }
+            return {
+                "SerialNumber": int(terms[1]),
+                "Mode": "grid" if terms[2] == "L" else "solar" if terms[2] == "B" else None,
+                "GridVoltage": float(terms[4]),
+                "GridFrequency": float(terms[5]),
+                "OutputVoltage": float(terms[6]),
+                "OutputFrequency": float(terms[7]),
+                "OutputAparentPower": int(terms[8]),
+                "OutputActivePower": int(terms[9]),
+                "LoadPercentage": int(terms[10]),
+                "BatteryVoltage": float(terms[11]),
+                "BatteryChargingCurrent": int(terms[12]),
+                "BatteryCapacity": float(terms[13]),
+                "PvInputVoltage": float(terms[14]),
+                "TotalChargingCurrent": int(terms[15]),
+                "TotalAcOutputApparentPower": int(terms[16]),
+                "TotalAcOutputActivePower": int(terms[17]),
+                "TotalAcOutputPercentage": int(terms[18]),
+                "InverterStatus": terms[19],
+                "OutputMode": int(terms[20]),
+                "ChargerSourcePriority": int(terms[21]),
+                "MaxChargeCurrent": int(terms[22]),
+                "MaxChargerRange": int(terms[23]),
+                "MaxAcChargerCurrent": int(terms[24]),
+                "PvInputCurrentForBattery": int(terms[25]),
+                "BatteryDischargeCurrent": int(terms[26]),
+            }
     except Exception as e:
         raise RuntimeError(f"Error parsing parallel_data ({response})") from e
 
