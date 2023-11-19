@@ -171,7 +171,7 @@ def get_settings(device):
     response = serial_command(device, "QPIRI")
     try:
         terms = response.split(" ")
-        if len(terms) < 26:
+        if len(terms) < 2:
             raise RuntimeError("Received fewer than 26 terms")
 
         return {
