@@ -111,7 +111,7 @@ def get_parallel_data(device):
     response = serial_command(device, "QPGS0")
     try:
         terms = response.split(" ")
-        if len(terms) < 2:
+        if len(terms) <= 0:
             raise RuntimeError("Received fewer than 27 terms")
 
         return {
