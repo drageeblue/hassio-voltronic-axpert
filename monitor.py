@@ -241,10 +241,7 @@ def main(
     while True:
         start = time.time()
 
-        data = json.dumps(get_parallel_data(device))
-        print("parallel_data", data, "\n")
-        send_data(client, mqtt_topic_parallel, data)
-        time.sleep(sleep_query)
+
 
         data = json.dumps(get_data(device))
         print("data", data, "\n")
