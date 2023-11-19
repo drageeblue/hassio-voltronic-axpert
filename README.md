@@ -27,7 +27,7 @@ See the following functions in [monitor.py](./monitor.py) for the values publish
 
 ### Install
 
-Add https://github.com/bennieswart/home-assistant-addons to the addon store repositories and you will get a `Axpert Inverter` listed there.
+Add https://github.com/bennieswart/home-assistant-addons or https://github.com/drageeblue/hassio-voltronic-axpert to the addon store repositories and you will get a `Axpert Inverter` listed there.
 Note that this assumes the inverter is `/dev/hidraw0`. If you have other USB to Serial devices connected this might be wrong.
 
 ### Manual build and run
