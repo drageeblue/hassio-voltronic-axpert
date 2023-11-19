@@ -1,6 +1,6 @@
 {
     "name": "Axpert Inverter",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "slug": "axpert",
     "description": "Monitors an axpert inverter",
     "arch": ["amd64", "armv7", "i386"],
@@ -15,10 +15,10 @@
         "mqtt_server": "192.168.1.231",
         "mqtt_user": "pbc",
         "mqtt_pass": "Aa1361336",
-        "mqtt_client_id": "axpert0",
-        "mqtt_topic_parallel": "power/axpert",
-        "mqtt_topic_settings": "power/axpert_settings",
-        "mqtt_topic": "power/axpert{sn}"
+        "mqtt_client_id": "voltronic0",
+        "mqtt_topic_parallel": "homeassistant/sensor/voltronic",
+        "mqtt_topic_settings": "homeassistant/sensor/voltronic_settings",
+        "mqtt_topic": "homeassistant/sensor/voltronic{sn}"
     },
     "schema": {
         "device": "str",
