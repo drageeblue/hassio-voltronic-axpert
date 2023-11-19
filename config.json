@@ -15,10 +15,10 @@
         "mqtt_server": "192.168.1.231",
         "mqtt_user": "pbc",
         "mqtt_pass": "Aa1361336",
-        "mqtt_client_id": "voltronic0",
-        "mqtt_topic_parallel": "homeassistant/sensor/voltronic",
-        "mqtt_topic_settings": "homeassistant/sensor/voltronic_settings",
-        "mqtt_topic": "homeassistant/sensor/voltronic{sn}"
+        "mqtt_client_id": "axpert0",
+        "mqtt_topic_parallel": "inverter/axpert",
+        "mqtt_topic_settings": "inverter/axpert_settings",
+        "mqtt_topic": "inverter/axpert{sn}"
     },
     "schema": {
         "device": "str",
