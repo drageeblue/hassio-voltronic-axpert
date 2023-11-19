@@ -171,7 +171,7 @@ def get_settings(device):
     response = serial_command(device, "QPIRI")
     try:
         terms = response.split(" ")
-        if len(terms) < 2:
+        if len(terms) < 25:
             raise RuntimeError("Received fewer than 26 terms")
 
         return {
@@ -200,7 +200,7 @@ def get_settings(device):
             "BatteryRedischargeVoltage": float(terms[22]),
             "PvOkCondition": PV_OK_CONDITIONS[terms[23]],
             "PvPowerBalance": PV_POWER_BALANCE[terms[24]],
-            "MaxBatteryCvChargingTime": int(terms[25]),
+#            "MaxBatteryCvChargingTime": int(terms[25]),
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing settings ({response})") from e
