@@ -317,7 +317,7 @@ def main(
         send_data(client, mqtt_topic_settings, data)
         time.sleep(sleep_query)
 
-	data = get_config_data(device)
+        data = get_config_data(device)
         for topicin, datain in data.items():
            j = json.dumps(datain)	    
            print("data", j, "\n")
