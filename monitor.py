@@ -179,40 +179,29 @@ def get_data(device):
         raise RuntimeError(f"Error parsing data ({response})") from e
         
 def get_config_data(device):
+
+    device_json = {
+        "identifiers": "AxpertVMIII",
+        "manufacturer": "Voltronic",
+        "name": "Axpert3",
+        "model": "3Kw",
+    }
+
+    BatteryVoltage_json = {
+        "unique_id": "axpert3_batteryvoltage",
+        "name": "BatteryVoltage",
+        "device_class": "voltage",
+        "state_class": "measurement",
+        "unit_of_measurement": "V",
+        "state_topic": "inverter/axpert3/BatteryVoltage",
+        "expire_after": 20,
+        "icon": "mdi:meter-electric"				
+        "device": device_json,
+    }
+	
     try:
         return {
-			{
-              "unique_id": "axpert3_batteryvoltage",
-              "name": "BatteryVoltage",
-              "device_class": "voltage",
-              "state_class": "measurement",
-              "unit_of_measurement": "V",
-              "state_topic": "inverter/axpert3/BatteryVoltage",
-              "expire_after": 20,
-              "device": {
-                "identifiers": [
-                  "Axpert3"
-                ],
-                "name": "Axpert3"
-             },
-              "icon": "mdi:meter-electric"
-             },
-             {
-              "unique_id": "axpert3_busvoltage",
-              "name": "BusVoltage",
-              "device_class": "voltage",
-              "state_class": "measurement",
-              "unit_of_measurement": "V",
-              "state_topic": "inverter/axpert3/BusVoltage",
-              "expire_after": 20,
-              "device": {
-                "identifiers": [
-                  "Axpert3"
-                ],
-                "name": "Axpert3"
-              },
-              "icon": "mdi:meter-electric"
-            },
+            BatteryVoltage_json
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
