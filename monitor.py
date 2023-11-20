@@ -187,7 +187,7 @@ def get_config_data(device):
         "model": "3Kw",
     }
 
-    BatteryVoltage_json = {
+    batteryvoltage_json = {
         "unique_id": "axpert3_batteryvoltage",
         "name": "BatteryVoltage",
         "device_class": "voltage",
@@ -195,7 +195,7 @@ def get_config_data(device):
         "unit_of_measurement": "V",
         "state_topic": "inverter/axpert3/BatteryVoltage",
         "expire_after": 20,
-        "icon": "mdi:meter-electric"				
+        "icon": "mdi:meter-electric",		
         "device": device_json,
     }
 	
