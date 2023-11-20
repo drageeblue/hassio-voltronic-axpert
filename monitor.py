@@ -290,10 +290,12 @@ def main(
         send_data(client, mqtt_topic_parallel, data)
         time.sleep(sleep_query)
 
-        data = json.dumps(get_data(device))
-        for datain in data:
-           print("data", datain, "\n")
-           send_data(client, mqtt_topic, datain)
+
+        data = get_data(device)	    
+        for topicin, datain in data.items():
+           j = json.dumps(datain)	    
+           print("data", j, "\n")
+           send_data(client, mqtt_topic, j)
         time.sleep(sleep_query)
 
         data = json.dumps(get_settings(device))
