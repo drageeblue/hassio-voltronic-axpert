@@ -194,7 +194,7 @@ def get_config_data(device):
                 ],
                 "name": "Axpert3"
               },
-              "icon": "mdi:meter-electric"
+              "icon": "mdi:meter-electric",
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
