@@ -119,7 +119,7 @@ def get_parallel_data(device):
                 "id": "axpert55355535553555",
                 "brand": "Voltronic",
                 "model": "Axpert VM III",
-                "model_id": "3000W",
+                "model_id": "3000W", 
                 "SerialNumber": int(terms[1]),
                 "Mode": "grid" if terms[2] == "L" else "solar" if terms[2] == "B" else None,
                 "GridVoltage": float(terms[4]),
