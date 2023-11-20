@@ -181,7 +181,9 @@ def get_data(device):
 def get_config_data(device):
 
     device_json = {
-        "identifiers": "AxpertVMIII",
+        "identifiers": [
+          "AxpertVMIII"
+        ],
         "manufacturer": "Voltronic",
         "name": "Axpert3",
         "model": "3Kw",
