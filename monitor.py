@@ -302,9 +302,9 @@ def main(
         time.sleep(sleep_query)
         
         data = json.dumps(get_config_data(device))
-	print("config", data, "\n")
-	send_data(client, "homeassistant/sensor/axpert3/batteryvoltage/config", data)
-	time.sleep(sleep_query)
+        print("config", data, "\n")
+        send_data(client, "homeassistant/sensor/axpert3/batteryvoltage/config", data)
+        time.sleep(sleep_query)
         
         time.sleep(max(0, sleep_iteration - (time.time() - start)))
 
