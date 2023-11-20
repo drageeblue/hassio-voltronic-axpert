@@ -177,7 +177,45 @@ def get_data(device):
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
-
+        
+def get_config_data():
+    try:
+        return {         
+            {
+              "unique_id": "axpert3_batteryvoltage",
+              "name": "BatteryVoltage",
+              "device_class": "voltage",
+              "state_class": "measurement",
+              "unit_of_measurement": "V",
+              "state_topic": "/inverter/axpert3/BatteryVoltage",
+              "expire_after": 20,
+              "device": {
+                "identifiers": [
+                  "Axpert3"
+                ],
+                "name": "Axpert3"
+              },
+              "icon": "mdi:meter-electric"
+            },
+            {
+              "unique_id": "axpert3_busvoltage",
+              "name": "BusVoltage",
+              "device_class": "voltage",
+              "state_class": "measurement",
+              "unit_of_measurement": "V",
+              "state_topic": "/inverter/axpert3/BusVoltage",
+              "expire_after": 20,
+              "device": {
+                "identifiers": [
+                  "Axpert3"
+                ],
+                "name": "Axpert3"
+              },
+              "icon": "mdi:meter-electric"
+            }
+        }
+    except Exception as e:
+        raise RuntimeError(f"Error parsing data ({response})") from e
 
 def get_settings(device):
     response = serial_command(device, "QPIRI")
@@ -272,7 +310,12 @@ def main(
         print("settings", data, "\n")
         send_data(client, mqtt_topic_settings, data)
         time.sleep(sleep_query)
-
+        
+        data = json.dumps(get_config_data())
+        print("config", data, "\n")
+        send_data(client, "homeassistant/sensor/axpert3/config", data)
+        time.sleep(sleep_query)
+        
         time.sleep(max(0, sleep_iteration - (time.time() - start)))
 
 
