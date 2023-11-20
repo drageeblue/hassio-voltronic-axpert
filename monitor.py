@@ -195,9 +195,9 @@ def get_config_data(device):
         "device_class": "voltage",
         "state_class": "measurement",
         "unit_of_measurement": "V",
-        "state_topic": "jk_bms01/meter/total_charge",
+        "state_topic": "inverter/axpert3/BatteryVoltage",
         "expire_after": 20,
-        "icon": "mdi:meter-electric",		
+        "icon": "mdi:meter-electric",
         "device": device_json,
     }
 	
