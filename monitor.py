@@ -201,7 +201,7 @@ def get_config_data(device):
 	
     try:
         return {
-            BatteryVoltage_json
+            batteryvoltage_json
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
