@@ -181,7 +181,7 @@ def get_data(device):
 def get_config_data(device):
     try:
         return {
-            {
+			{
               "unique_id": "axpert3_batteryvoltage",
               "name": "BatteryVoltage",
               "device_class": "voltage",
@@ -194,7 +194,7 @@ def get_config_data(device):
                   "Axpert3"
                 ],
                 "name": "Axpert3"
-              },
+             },
               "icon": "mdi:meter-electric"
              },
              {
@@ -212,7 +212,7 @@ def get_config_data(device):
                 "name": "Axpert3"
               },
               "icon": "mdi:meter-electric"
-             },
+            },
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
