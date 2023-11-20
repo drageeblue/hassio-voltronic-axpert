@@ -115,6 +115,11 @@ def get_parallel_data(device):
 #            raise RuntimeError("Received fewer than 27 terms")
 
             return {
+                "name": "Axpert3",
+                "id": "axpert55355535553555",
+                "brand": "Voltronic",
+                "model": "Axpert VM III",
+                "model_id": "3000W",
                 "SerialNumber": int(terms[1]),
                 "Mode": "grid" if terms[2] == "L" else "solar" if terms[2] == "B" else None,
                 "GridVoltage": float(terms[4]),
@@ -153,6 +158,11 @@ def get_data(device):
             raise RuntimeError("Received fewer than 20 terms")
 
         return {
+            "name": "Axpert3",
+            "id": "axpert55355535553555",
+            "brand": "Voltronic",
+            "model": "Axpert VM III",
+            "model_id": "3000W",            
             "BusVoltage": float(terms[7]),
             "BatteryVoltage": float(terms[8]),            
             "BatteryChargingCurrent": int(terms[9]),
@@ -177,6 +187,11 @@ def get_settings(device):
             raise RuntimeError("Received fewer than 25 terms")
 
         return {
+            "name": "Axpert3",
+            "id": "axpert55355535553555",
+            "brand": "Voltronic",
+            "model": "Axpert VM III",
+            "model_id": "3000W",            
             "AcInputVoltage": float(terms[0]),
             "AcInputCurrent": float(terms[1]),
             "AcOutputVoltage": float(terms[2]),
