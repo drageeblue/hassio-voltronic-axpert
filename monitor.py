@@ -321,7 +321,7 @@ def main(
         for topicin, datain in data.items():
            j = json.dumps(datain)	    
            print("data", j, "\n")
-           send_data(client, "homeassistant/sensor/axpert3/+ topicin +/config", j)
+           send_data(client, "homeassistant/sensor/axpert3/"+topicin+"/config", j)
         time.sleep(sleep_query)
         
         time.sleep(max(0, sleep_iteration - (time.time() - start)))
