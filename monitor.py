@@ -195,7 +195,7 @@ def get_config_data(device):
         "device_class": "voltage",
         "state_class": "measurement",
         "unit_of_measurement": "V",
-        "state_topic": "inverter/axpert3/BatteryVoltage",
+        "state_topic": "inverter/axpert3",
         "expire_after": 20,
         "icon": "mdi:meter-electric",		
         "device": device_json,
@@ -302,7 +302,7 @@ def main(
         
         data = json.dumps(get_config_data(device))
         print("config", data, "\n")
-        send_data(client, "homeassistant/sensor/axpert3/config", data)
+        send_data(client, "homeassistant/sensor/axpert3/batteryvoltage/config", data)
         time.sleep(sleep_query)
         
         time.sleep(max(0, sleep_iteration - (time.time() - start)))
