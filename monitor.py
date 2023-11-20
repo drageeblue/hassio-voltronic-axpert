@@ -157,12 +157,7 @@ def get_data(device):
         if len(terms) < 20:
             raise RuntimeError("Received fewer than 20 terms")
 
-        return {
-            "name": "Axpert3",
-            "id": "axpert55355535553555",
-            "brand": "Voltronic",
-            "model": "Axpert VM III",
-            "model_id": "3000W",            
+        return {     
             "BusVoltage": float(terms[7]),
             "BatteryVoltage": float(terms[8]),            
             "BatteryChargingCurrent": int(terms[9]),
@@ -188,7 +183,17 @@ def get_config_data(device):
         "name": "Axpert3",
         "model": "3Kw",
     }
-
+    busvoltage_json = {
+        "unique_id": "axpert3_busvoltage",
+        "name": "BusVoltage",
+        "device_class": "voltage",
+        "state_class": "measurement",
+        "unit_of_measurement": "V",
+        "state_topic": "inverter/axpert3/BusVoltage",
+        "expire_after": 200,
+        "icon": "mdi:meter-electric",
+        "device": device_json,
+    }
     batteryvoltage_json = {
         "unique_id": "axpert3_batteryvoltage",
         "name": "BatteryVoltage",
@@ -200,22 +205,46 @@ def get_config_data(device):
         "icon": "mdi:meter-electric",
         "device": device_json,
     }
-    busvoltage_json = {
-        "unique_id": "axpert3_busvoltage",
-        "name": "BusVoltage",
-        "device_class": "voltage",
+    batterychargingcurrent_json = {
+        "unique_id": "axpert3_batterychargingcurrent",
+        "name": "BatteryChargingCurrent",
+        "device_class": "current",
         "state_class": "measurement",
-        "unit_of_measurement": "V",
-        "state_topic": "inverter/axpert3/BusVoltage",
+        "unit_of_measurement": "A",
+        "state_topic": "inverter/axpert3/BatteryChargingCurrent",
         "expire_after": 200,
-        "icon": "mdi:meter-electric",
+        "icon": "mdi:current-dc",
+        "device": device_json,
+    }
+    batterycapacity_json = {
+        "unique_id": "axpert3_batterycapacity",
+        "name": "BatteryCapacity",
+        "state_class": "measurement",
+        "unit_of_measurement": "Ah",
+        "state_topic": "inverter/axpert3/BatteryCapacity",
+        "expire_after": 200,
+        "icon": "mdi:home-battery",
         "device": device_json,
     }	
+    pvinputpower_json = {
+        "unique_id": "axpert3_pvinputpower",
+        "name": "PvInputPower",
+        "device_class": "power",
+        "state_class": "measurement",
+        "unit_of_measurement": "W",
+        "state_topic": "inverter/axpert3/PvInputPower",
+        "expire_after": 200,
+        "icon": "mdi:flash",
+        "device": device_json,
+    }
 	
     try:
         return {
-            "batteryvoltage": batteryvoltage_json,
             "busvoltage": busvoltage_json,
+            "batteryvoltage": batteryvoltage_json,		
+	    "batterychargingcurrent_": batterychargingcurrent_json,
+	    "batterycapacity": batterycapacity_json,
+            "pvinputpower": pvinputpower_json,		
 	}
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
@@ -227,12 +256,7 @@ def get_settings(device):
         if len(terms) < 25:
             raise RuntimeError("Received fewer than 25 terms")
 
-        return {
-            "name": "Axpert3",
-            "id": "axpert55355535553555",
-            "brand": "Voltronic",
-            "model": "Axpert VM III",
-            "model_id": "3000W",            
+        return {     
             "AcInputVoltage": float(terms[0]),
             "AcInputCurrent": float(terms[1]),
             "AcOutputVoltage": float(terms[2]),
