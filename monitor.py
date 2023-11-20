@@ -178,7 +178,7 @@ def get_data(device):
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
         
-def get_config_data():
+def get_config_data(device):
     try:
         return {
               "unique_id": "axpert3_batteryvoltage",
@@ -293,7 +293,7 @@ def main(
         send_data(client, mqtt_topic_settings, data)
         time.sleep(sleep_query)
         
-        data = json.dumps(get_config_data())
+        data = json.dumps(get_config_data(device))
         print("config", data, "\n")
         send_data(client, "homeassistant/sensor/axpert3/config", data)
         time.sleep(sleep_query)
