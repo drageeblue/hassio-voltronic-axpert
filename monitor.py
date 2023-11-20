@@ -395,28 +395,28 @@ def main(
     while True:
         start = time.time()
 
-        data = json.dumps(get_parallel_data(device))
-        print("parallel_data", data, "\n")
-        send_data(client, mqtt_topic_parallel, data)
-        time.sleep(sleep_query)
+ #       data = json.dumps(get_parallel_data(device))
+ #       print("parallel_data", data, "\n")
+ #       send_data(client, mqtt_topic_parallel, data)
+ #       time.sleep(sleep_query)
 
 
         data = get_data(device)	    
         for topicin, datain in data.items():
            j = json.dumps(datain)	    
-           print("data", j, "\n")
+#           print("data", j, "\n")
            send_data(client, mqtt_topic+"/"+topicin , j)
         time.sleep(sleep_query)
 
         data = json.dumps(get_settings(device))
-        print("settings", data, "\n")
+#        print("settings", data, "\n")
         send_data(client, mqtt_topic_settings, data)
         time.sleep(sleep_query)
 
         data = get_config_data(device)
         for topicin, datain in data.items():
            j = json.dumps(datain)	    
-           print("data", j, "\n")
+#           print("data", j, "\n")
            send_data(client, "homeassistant/sensor/axpert3/"+topicin+"/config", j)
         time.sleep(sleep_query)
         
