@@ -214,8 +214,8 @@ def get_config_data(device):
 	
     try:
         return {
-            batteryvoltage_json,
-            busvoltage_json,
+            "batteryvoltage": batteryvoltage_json,
+            "busvoltage": busvoltage_json,
 	}
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
@@ -316,10 +316,12 @@ def main(
         print("settings", data, "\n")
         send_data(client, mqtt_topic_settings, data)
         time.sleep(sleep_query)
-        
-        data = json.dumps(get_config_data(device))
-        print("config", data, "\n")
-        send_data(client, "homeassistant/sensor/axpert3/batteryvoltage/config", data)
+
+	data = get_config_data(device)
+        for topicin, datain in data.items():
+           j = json.dumps(datain)	    
+           print("data", j, "\n")
+           send_data(client, "homeassistant/sensor/axpert3/+ topicin +/config", j)
         time.sleep(sleep_query)
         
         time.sleep(max(0, sleep_iteration - (time.time() - start)))
