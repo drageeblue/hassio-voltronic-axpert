@@ -234,7 +234,7 @@ def get_config_data(device):
         "unit_of_measurement": "W",
         "state_topic": "inverter/axpert3/PvInputPower",
         "expire_after": 200,
-        "icon": "mdi:flash",
+        "icon": "mdi:solar-power-variant",
         "device": device_json,
     }
 	
