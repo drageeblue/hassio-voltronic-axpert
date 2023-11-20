@@ -291,7 +291,7 @@ def main(
         time.sleep(sleep_query)
 
         data = json.dumps(get_data(device))
-	for datain in data:
+        for datain in data:
            print("data", datain, "\n")
            send_data(client, mqtt_topic, datain)
         time.sleep(sleep_query)
