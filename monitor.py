@@ -291,8 +291,9 @@ def main(
         time.sleep(sleep_query)
 
         data = json.dumps(get_data(device))
-        print("data", data, "\n")
-        send_data(client, mqtt_topic, data)
+	for datain in data.items():
+           print("data", datain, "\n")
+           send_data(client, mqtt_topic, datain)
         time.sleep(sleep_query)
 
         data = json.dumps(get_settings(device))
@@ -301,9 +302,9 @@ def main(
         time.sleep(sleep_query)
         
         data = json.dumps(get_config_data(device))
-        print("config", data, "\n")
-        send_data(client, "homeassistant/sensor/axpert3/batteryvoltage/config", data)
-        time.sleep(sleep_query)
+	print("config", data, "\n")
+	send_data(client, "homeassistant/sensor/axpert3/batteryvoltage/config", data)
+	time.sleep(sleep_query)
         
         time.sleep(max(0, sleep_iteration - (time.time() - start)))
 
