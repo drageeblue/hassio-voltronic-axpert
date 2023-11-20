@@ -196,13 +196,27 @@ def get_config_data(device):
         "state_class": "measurement",
         "unit_of_measurement": "V",
         "state_topic": "inverter/axpert3/BatteryVoltage",
-        "expire_after": 20,
+        "expire_after": 200,
         "icon": "mdi:meter-electric",
         "device": device_json,
     }
+    busvoltage_json = {
+        "unique_id": "axpert3_busvoltage",
+        "name": "BusVoltage",
+        "device_class": "voltage",
+        "state_class": "measurement",
+        "unit_of_measurement": "V",
+        "state_topic": "inverter/axpert3/BusVoltage",
+        "expire_after": 200,
+        "icon": "mdi:meter-electric",
+        "device": device_json,
+    }	
 	
     try:
-        return batteryvoltage_json
+        return {
+            batteryvoltage_json,
+            busvoltage_json,
+	}
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
 
