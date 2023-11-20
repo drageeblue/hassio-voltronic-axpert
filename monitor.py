@@ -157,7 +157,14 @@ def get_data(device):
         if len(terms) < 20:
             raise RuntimeError("Received fewer than 20 terms")
 
-        return {     
+        return {
+            "GridVoltage": float(terms[0]),
+            "GridFrequency": float(terms[1]),		
+            "ACOutputVoltage": float(terms[2]),	
+            "ACOutputFrequency": float(terms[3]),	
+            "ACOutputApparentPower": int(terms[4]),		
+            "ACOutputActivePower": int(terms[5]),
+            "OutputLoadPercent":int(terms[6]),
             "BusVoltage": float(terms[7]),
             "BatteryVoltage": float(terms[8]),            
             "BatteryChargingCurrent": int(terms[9]),
@@ -168,7 +175,10 @@ def get_data(device):
             "BatteryVoltageFromScc": float(terms[14]),
             "BatteryDischargeCurrent": int(terms[15]),
             "DeviceStatus": terms[16],
+            "BatteryVoltageOffsetForFansOn": int(terms[17]),
+	    "EEPROMVersion": terms[18], 
             "PvInputPower": int(terms[19]),
+            "DeviceStatus2": terms[20],		
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
@@ -226,6 +236,63 @@ def get_config_data(device):
         "icon": "mdi:home-battery",
         "device": device_json,
     }	
+    inverterheatsinktemperature_json = {
+        "unique_id": "axpert3_inverterheatsinktemperature",
+        "name": "InverterHeatsinkTemperature",
+        "device_class": "temperature",	    
+        "state_class": "measurement",
+        "unit_of_measurement": "°C",
+        "state_topic": "inverter/axpert3/InverterHeatsinkTemperature",
+        "expire_after": 200,
+        "icon": "mdi:temperature-celsius",
+        "device": device_json,
+    }		
+    pvinputcurrent_json = {
+        "unique_id": "axpert3_pvinputcurrent",
+        "name": "PvInputCurrent",
+        "device_class": "current",	    
+        "state_class": "measurement",
+        "unit_of_measurement": "A",
+        "state_topic": "inverter/axpert3/PvInputCurrent",
+        "expire_after": 200,
+        "icon": "mdi:current-dc",
+        "device": device_json,
+    }		
+    pvinputvoltage_json = {
+        "unique_id": "axpert3_pvinputvoltage",
+        "name": "PvInputVoltage",
+        "device_class": "voltage",
+        "state_class": "measurement",
+        "unit_of_measurement": "V",
+        "state_topic": "inverter/axpert3/PvInputVoltage",
+        "expire_after": 200,
+        "icon": "mdi:meter-electric",
+        "device": device_json,
+    }
+    batteryvoltagefromscc_json = {
+        "unique_id": "axpert3_batteryvoltagefromscc",
+        "name": "BatteryVoltageFromScc",
+        "device_class": "voltage",
+        "state_class": "measurement",
+        "unit_of_measurement": "V",
+        "state_topic": "inverter/axpert3/BatteryVoltageFromScc",
+        "expire_after": 200,
+        "icon": "mdi:meter-electric",
+        "device": device_json,
+    }
+    batterydischargecurrent_json = {
+        "unique_id": "axpert3_batterydischargecurrent",
+        "name": "BatteryDischargeCurrent",
+        "device_class": "current",	    
+        "state_class": "measurement",
+        "unit_of_measurement": "A",
+        "state_topic": "inverter/axpert3/BatteryDischargeCurrent",
+        "expire_after": 200,
+        "icon": "mdi:current-dc",
+        "device": device_json,
+    }	
+
+	
     pvinputpower_json = {
         "unique_id": "axpert3_pvinputpower",
         "name": "PvInputPower",
@@ -234,7 +301,7 @@ def get_config_data(device):
         "unit_of_measurement": "W",
         "state_topic": "inverter/axpert3/PvInputPower",
         "expire_after": 200,
-        "icon": "mdi:solar-power-variant",
+        "icon": "mdi:solar-power",
         "device": device_json,
     }
 	
@@ -244,7 +311,13 @@ def get_config_data(device):
             "batteryvoltage": batteryvoltage_json,		
 	    "batterychargingcurrent_": batterychargingcurrent_json,
 	    "batterycapacity": batterycapacity_json,
-            "pvinputpower": pvinputpower_json,		
+	    "inverterheatsinktemperature": inverterheatsinktemperature_json,
+            "pvinputcurrent": pvinputcurrent_json,		
+            "pvinputvoltage": pvinputvoltage_json,
+            "batteryvoltagefromscc": batteryvoltagefromscc_json,
+            "batterydischargecurrent": batterydischargecurrent_json,
+	    "pvinputpower": pvinputpower_json,
+
 	}
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
@@ -282,7 +355,6 @@ def get_settings(device):
             "BatteryRedischargeVoltage": float(terms[22]),
             "PvOkCondition": PV_OK_CONDITIONS[terms[23]],
             "PvPowerBalance": PV_POWER_BALANCE[terms[24]],
-#            "MaxBatteryCvChargingTime": int(terms[25]),
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing settings ({response})") from e
