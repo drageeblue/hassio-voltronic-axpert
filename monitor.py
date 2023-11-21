@@ -152,10 +152,10 @@ def get_parallel_data(device):
 
 def get_data(device):
     response = serial_command(device, "QPIGS")
-    response2 = serial_command(device, "QPIGS2")	
+    response2 = serial_command(device, "QPIGS2")
     try:
         terms = response.split(" ")
-	terms2 = response2.split(" ")
+        terms2 = response2.split(" ")
         if len(terms) < 20 or len(terms) < 10:
             raise RuntimeError("Received fewer than expected terms")
 
