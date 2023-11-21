@@ -152,10 +152,12 @@ def get_parallel_data(device):
 
 def get_data(device):
     response = serial_command(device, "QPIGS")
+    response2 = serial_command(device, "QPIGS2")	
     try:
         terms = response.split(" ")
-        if len(terms) < 20:
-            raise RuntimeError("Received fewer than 20 terms")
+	terms2 = response2.split(" ")
+        if len(terms) < 20 or len(terms) < 10:
+            raise RuntimeError("Received fewer than expected terms")
 
         return {
             "GridVoltage": float(terms[0]),
@@ -178,7 +180,9 @@ def get_data(device):
             "BatteryVoltageOffsetForFansOn": int(terms[17]),
 	    "EEPROMVersion": terms[18], 
             "PvInputPower": int(terms[19]),
-            "DeviceStatus2": terms[20],		
+            "DeviceStatus2": terms[20],	
+	    "PVChargingPower": int(terms2[10]),		
+	    "PVTotalChargingPower": int(terms2[11]),
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
