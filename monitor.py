@@ -115,11 +115,6 @@ def get_parallel_data(device):
 #            raise RuntimeError("Received fewer than 27 terms")
 
             return {
-                "name": "Axpert3",
-                "id": "axpert55355535553555",
-                "brand": "Voltronic",
-                "model": "Axpert VM III",
-                "model_id": "3000W", 
                 "SerialNumber": int(terms[1]),
                 "Mode": "grid" if terms[2] == "L" else "solar" if terms[2] == "B" else None,
                 "GridVoltage": float(terms[4]),
@@ -152,12 +147,10 @@ def get_parallel_data(device):
 
 def get_data(device):
     response = serial_command(device, "QPIGS")
-    response2 = serial_command(device, "QPIGS2")
     try:
         terms = response.split(" ")
-        terms2 = response2.split(" ")
-        if len(terms) < 20 or len(terms) < 10:
-            raise RuntimeError("Received fewer than expected terms")
+        if len(terms) < 20:
+            raise RuntimeError("Received fewer than 20 terms")
 
         return {
             "GridVoltage": float(terms[0]),
@@ -181,8 +174,6 @@ def get_data(device):
 	    "EEPROMVersion": terms[18], 
             "PvInputPower": int(terms[19]),
             "DeviceStatus2": terms[20],	
-	    "PVChargingPower": int(terms2[10]),		
-	    "PVTotalChargingPower": int(terms2[11]),
         }
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
