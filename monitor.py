@@ -264,6 +264,19 @@ def get_config_data(device):
         "icon": "mdi:meter-electric",
         "device": device_json,
     }
+	
+    gridvoltage_json = {
+        "unique_id": "axpert3_gridvoltage",
+        "name": "GridVoltage",
+        "device_class": "voltage",
+        "state_class": "measurement",
+        "unit_of_measurement": "V",
+        "state_topic": "inverter/axpert3/GridVoltage",
+        "expire_after": 200,
+        "icon": "mdi:meter-electric",
+        "device": device_json,
+    }
+	
     batteryvoltagefromscc_json = {
         "unique_id": "axpert3_batteryvoltagefromscc",
         "name": "BatteryVoltageFromScc",
@@ -300,6 +313,42 @@ def get_config_data(device):
         "device": device_json,
     }
 	
+    acoutputactivepower_json = {
+        "unique_id": "axpert3_acoutputactivepower",
+        "name": "ACOutputActivePower",
+        "device_class": "power",
+        "state_class": "measurement",
+        "unit_of_measurement": "W",
+        "state_topic": "inverter/axpert3/ACOutputActivePower",
+        "expire_after": 200,
+        "icon": "mdi:power-socket-de",
+        "device": device_json,
+    }	
+
+    acoutputapparentpower_json = {
+        "unique_id": "axpert3_acoutputapparentpower",
+        "name": "ACOutputApparentPower",
+        "device_class": "apparent_power",
+        "state_class": "measurement",
+        "unit_of_measurement": "W",
+        "state_topic": "inverter/axpert3/ACOutputApparentPower",
+        "expire_after": 200,
+        "icon": "mdi:meter-electric",
+        "device": device_json,
+    }	
+	
+    outputloadpercent_json = {
+        "unique_id": "axpert3_outputloadpercent",
+        "name": "OutputLoadPercent",
+        "device_class": "power",
+        "state_class": "measurement",
+        "unit_of_measurement": "%",
+        "state_topic": "inverter/axpert3/OutputLoadPercent",
+        "expire_after": 200,
+        "icon": "mdi:percent",
+        "device": device_json,
+    }	
+	
     try:
         return {
             "busvoltage": busvoltage_json,
@@ -309,10 +358,13 @@ def get_config_data(device):
 	    "inverterheatsinktemperature": inverterheatsinktemperature_json,
             "pvinputcurrent": pvinputcurrent_json,		
             "pvinputvoltage": pvinputvoltage_json,
+            "gridvoltage": gridvoltage_json,		
             "batteryvoltagefromscc": batteryvoltagefromscc_json,
             "batterydischargecurrent": batterydischargecurrent_json,
 	    "pvinputpower": pvinputpower_json,
-
+	    "acoutputactivepower": acoutputactivepower_json,
+	    "acoutputapparentpower": acoutputapparentpower_json,	
+	    "outputloadpercent": outputloadpercent_json,			
 	}
     except Exception as e:
         raise RuntimeError(f"Error parsing data ({response})") from e
